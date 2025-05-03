@@ -3,8 +3,18 @@ using Microsoft.AspNetCore.Http;
 
 namespace CommonSharedLibrary.Middleware.ApiGatewayListener;
 
-public class ApiGatewayListener(RequestDelegate next)
+public class ApiGatewayListener
 {
+    private readonly RequestDelegate _next;
+
+    public ApiGatewayListener(RequestDelegate next)
+    {
+        _next = next ?? throw new ArgumentNullException(nameof(next));
+    }
+    /// <summary>
+    /// InvokeAsync
+    /// </summary>
+    /// <param name="context"></param>
     public async Task InvokeAsync(HttpContext context)
     {
         //Extract specific header from the request
@@ -18,7 +28,7 @@ public class ApiGatewayListener(RequestDelegate next)
         }
         else
         {
-            await next(context);
+            await _next(context);
         }
     }
 }
