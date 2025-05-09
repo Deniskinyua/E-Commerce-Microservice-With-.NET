@@ -21,7 +21,7 @@ namespace CommonSharedLibrary.DependencyInjection.Authenticatio
 
                     options.RequireHttpsMetadata = false;
                     options.SaveToken = true;
-                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
                         ValidateAudience = true,
