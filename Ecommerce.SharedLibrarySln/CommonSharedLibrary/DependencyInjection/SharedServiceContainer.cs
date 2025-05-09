@@ -13,6 +13,14 @@ namespace CommonSharedLibrary.DependencyInjection
 {
     public static class SharedServiceContainer
     {
+        /// <summary>
+        /// AddSharedServices
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="config"></param>
+        /// <param name="fileName"></param>
+        /// <typeparam name="TContext"></typeparam>
+        /// <returns></returns>
         public static IServiceCollection AddSharedServices<TContext>(this IServiceCollection services,
             IConfiguration config, string fileName) where TContext : DbContext
         {
@@ -30,7 +38,11 @@ namespace CommonSharedLibrary.DependencyInjection
             JWTAuthenticationScheme.AddJWTAuthenticationScheme(services, config);
             return services;
         }
-
+        /// <summary>
+        /// UseSharedPolicies
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
         public static IApplicationBuilder UseSharedPolicies(this IApplicationBuilder app)
         {
             //Use global exception
