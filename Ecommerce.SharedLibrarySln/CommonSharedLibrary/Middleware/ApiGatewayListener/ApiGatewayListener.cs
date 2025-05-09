@@ -20,11 +20,12 @@ public class ApiGatewayListener
         //Extract specific header from the request
         var signedHeader = context.Request.Headers["Api-Gateway"];
         
-        //Null means, the request is NOT coming from the API Gateway
+        //Null means, the request is NOT coming from the API Gateway // 503
         if (signedHeader.FirstOrDefault() is null)
         {
             context.Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
             await context.Response.WriteAsync("Sorry, service is unavailable.");
+            return;
         }
         else
         {
